@@ -1,0 +1,184 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqj23206f0dsw"]
+
+[ext_resource type="Texture2D" uid="uid://b24t74v8syjmc" path="res://Textures/PNGs/Backgrounds/OptionsBackground.png" id="1_6kbbk"]
+[ext_resource type="FontFile" uid="uid://dae18p1tels8n" path="res://Fonts/TechnoRaceItalic-eZRWe.otf" id="1_t8e73"]
+[ext_resource type="Texture2D" uid="uid://dkmaa6dje32or" path="res://Textures/PNGs/Icons/PowerIcon.png" id="1_wbwc7"]
+[ext_resource type="Script" uid="uid://b8bpjmq8dahd5" path="res://Scripts/DefaultScript.gd" id="1_wmgoe"]
+[ext_resource type="Texture2D" uid="uid://ptcvypmju08k" path="res://Textures/PNGs/Icons/SettingsIcon.png" id="3_y4ecp"]
+[ext_resource type="Texture2D" uid="uid://dr0asvy4uat0m" path="res://Textures/PNGs/Backgrounds/PreviewBackground.png" id="5_y4ecp"]
+
+[node name="DefaultScene" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wmgoe")
+
+[node name="DefaultBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="OptionsBackground" type="TextureRect" parent="DefaultBox"]
+custom_minimum_size = Vector2(504, 0)
+layout_mode = 2
+texture = ExtResource("1_6kbbk")
+
+[node name="OptionsBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground"]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 1084.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="TopMargin" type="MarginContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 240
+
+[node name="TitleBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin"]
+layout_mode = 2
+
+[node name="AppTitle" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_t8e73")
+theme_override_font_sizes/font_size = 30
+text = "Steam Deck Streaming"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AppVersion" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_t8e73")
+theme_override_font_sizes/font_size = 23
+text = "v0.01"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ServicesBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Amazon" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Amazon Prime"
+
+[node name="AppleTV" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Apple TV"
+
+[node name="Disney+" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Disney+"
+
+[node name="HBOMax" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "HBO Max"
+
+[node name="Hulu" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Hulu"
+
+[node name="Netflix" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Netflix"
+
+[node name="Paramount" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Paramount+"
+
+[node name="BottomMargin" type="MarginContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 240
+theme_override_constants/margin_bottom = 50
+
+[node name="ConfigBox" type="HBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Settings" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_y4ecp")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Control" type="Control" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Power" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_wbwc7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="DefaultBox"]
+custom_minimum_size = Vector2(1420, 0)
+layout_mode = 2
+texture = ExtResource("5_y4ecp")
+
+[node name="PreviewImage" type="TextureRect" parent="DefaultBox/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsMenu" type="VBoxContainer" parent="DefaultBox/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
