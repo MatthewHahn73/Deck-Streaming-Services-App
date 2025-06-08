@@ -1,0 +1,280 @@
+[gd_scene load_steps=14 format=3 uid="uid://dqj23206f0dsw"]
+
+[ext_resource type="Texture2D" uid="uid://b24t74v8syjmc" path="res://Assets/Textures/PNGs/Backgrounds/OptionsBackground.png" id="1_6kbbk"]
+[ext_resource type="FontFile" uid="uid://dae18p1tels8n" path="res://Assets/Fonts/TechnoRaceItalic-eZRWe.otf" id="1_t8e73"]
+[ext_resource type="Texture2D" uid="uid://d4f1gstadffqk" path="res://Assets/Textures/PNGs/Icons/PowerIcon.png" id="1_wbwc7"]
+[ext_resource type="Script" uid="uid://b8bpjmq8dahd5" path="res://Assets/Scripts/DefaultScript.gd" id="1_wmgoe"]
+[ext_resource type="Texture2D" uid="uid://qb2hoeibf52k" path="res://Assets/Textures/PNGs/Icons/SettingsIcon.png" id="3_y4ecp"]
+[ext_resource type="Theme" uid="uid://ggaet022hl5u" path="res://Assets/Custom Themes/SideButtonTheme.tres" id="4_ww48f"]
+[ext_resource type="Texture2D" uid="uid://cjuji1mc6cdxl" path="res://Assets/Textures/PNGs/Icons/SettingsIcon-Pressed.png" id="5_frl37"]
+[ext_resource type="Texture2D" uid="uid://dr0asvy4uat0m" path="res://Assets/Textures/PNGs/Backgrounds/PreviewBackground.png" id="5_y4ecp"]
+[ext_resource type="Texture2D" uid="uid://dbiji0ouxu7p4" path="res://Assets/Textures/PNGs/Icons/SettingsIcon-Hover.png" id="6_utu8n"]
+[ext_resource type="Texture2D" uid="uid://be7f67egfyd3o" path="res://Assets/Textures/PNGs/Icons/PowerIcon-Pressed.png" id="8_utu8n"]
+[ext_resource type="Texture2D" uid="uid://d1n3screhwtk" path="res://Assets/Textures/PNGs/Icons/PowerIcon-Hover.png" id="9_lhorl"]
+[ext_resource type="PackedScene" uid="uid://bqpjobh068c6u" path="res://Assets/Scenes/SettingsScene.tscn" id="11_utu8n"]
+[ext_resource type="FontFile" uid="uid://cg1ws2b6akn1d" path="res://Assets/Fonts/HomeVideo-BLG6G.ttf" id="13_lhorl"]
+
+[node name="DefaultScene" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wmgoe")
+
+[node name="DefaultBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="OptionsBackground" type="TextureRect" parent="DefaultBox"]
+custom_minimum_size = Vector2(504, 0)
+layout_mode = 2
+texture = ExtResource("1_6kbbk")
+
+[node name="OptionsBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground"]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 1084.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="TopMargin" type="MarginContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 210
+
+[node name="TitleBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin"]
+layout_mode = 2
+
+[node name="AppTitle" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_t8e73")
+theme_override_font_sizes/font_size = 30
+text = "Steam Deck Streaming"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AppVersion" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_t8e73")
+theme_override_font_sizes/font_size = 23
+text = "v0.01"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ServicesBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Amazon" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "Amazon Prime"
+
+[node name="AppleTV" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "Apple TV"
+
+[node name="Disney" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "Disney+"
+
+[node name="HBOMax" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "HBO Max"
+
+[node name="Hulu" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "Hulu"
+
+[node name="Netflix" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "Netflix"
+
+[node name="Paramount" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "Paramount+"
+
+[node name="Youtube" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ww48f")
+text = "Youtube"
+
+[node name="BottomMargin" type="MarginContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 210
+theme_override_constants/margin_bottom = 50
+
+[node name="ConfigBox" type="HBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Settings" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_y4ecp")
+texture_pressed = ExtResource("5_frl37")
+texture_hover = ExtResource("6_utu8n")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Control" type="Control" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Power" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_wbwc7")
+texture_pressed = ExtResource("8_utu8n")
+texture_hover = ExtResource("9_lhorl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PreviewBackground" type="TextureRect" parent="DefaultBox"]
+custom_minimum_size = Vector2(1420, 0)
+layout_mode = 2
+texture = ExtResource("5_y4ecp")
+
+[node name="PreviewContainer" type="VBoxContainer" parent="DefaultBox/PreviewBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TopShader" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="PreviewImage" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
+custom_minimum_size = Vector2(0, 720)
+layout_mode = 2
+
+[node name="BottomShader" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="SettingsMenu" parent="DefaultBox/PreviewBackground" instance=ExtResource("11_utu8n")]
+layout_mode = 1
+offset_left = 1290.0
+offset_right = 1822.0
+
+[node name="ErrorMarginContainer" type="MarginContainer" parent="DefaultBox/PreviewBackground"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="ErrorContainer" type="HBoxContainer" parent="DefaultBox/PreviewBackground/ErrorMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="ErrorType" type="Label" parent="DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("13_lhorl")
+theme_override_font_sizes/font_size = 20
+text = "Error Type: "
+
+[node name="ErrorMessage" type="Label" parent="DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("13_lhorl")
+theme_override_font_sizes/font_size = 20
+text = "Test Error Message"
+
+[node name="MenuAnimations" type="AnimationPlayer" parent="."]
+
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_service_button_mouse_entered" binds= ["PrimeVideo"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_any_service_button_pressed" binds= ["PrimeVideo"]]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV" to="." method="_on_service_button_mouse_entered" binds= ["AppleTV"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV" to="." method="_on_any_service_button_pressed" binds= ["AppleTV"]]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney" to="." method="_on_service_button_mouse_entered" binds= ["Disney"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney" to="." method="_on_any_service_button_pressed" binds= ["Disney"]]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax" to="." method="_on_service_button_mouse_entered" binds= ["HBOMax"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax" to="." method="_on_any_service_button_pressed" binds= ["HBOMax"]]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu" to="." method="_on_service_button_mouse_entered" binds= ["Hulu"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu" to="." method="_on_any_service_button_pressed" binds= ["Hulu"]]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix" to="." method="_on_service_button_mouse_entered" binds= ["Netflix"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix" to="." method="_on_any_service_button_pressed" binds= ["Netflix"]]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount" to="." method="_on_service_button_mouse_entered" binds= ["Paramount"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount" to="." method="_on_any_service_button_pressed" binds= ["Paramount"]]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_service_button_mouse_entered" binds= ["Youtube"]]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_any_mouse_exited"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_any_service_button_pressed" binds= ["Youtube"]]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Power" to="." method="_on_power_pressed"]

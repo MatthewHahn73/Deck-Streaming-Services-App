@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://ggaet022hl5u"]
+
+[ext_resource type="FontFile" uid="uid://dae18p1tels8n" path="res://Assets/Fonts/TechnoRaceItalic-eZRWe.otf" id="1_uci8e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwehw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uci8e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utu8n"]
+bg_color = Color(0.0313726, 0.258824, 0.345098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utu8n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhorl"]
+bg_color = Color(0.0133572, 0.164352, 0.224633, 1)
+
+[resource]
+Button/colors/font_disabled_color = Color(0.341176, 0.341176, 0.341176, 1)
+Button/constants/outline_size = 7
+Button/font_sizes/font_size = 22
+Button/fonts/font = ExtResource("1_uci8e")
+Button/styles/disabled = SubResource("StyleBoxFlat_qwehw")
+Button/styles/focus = SubResource("StyleBoxEmpty_uci8e")
+Button/styles/hover = SubResource("StyleBoxFlat_utu8n")
+Button/styles/normal = SubResource("StyleBoxEmpty_utu8n")
+Button/styles/pressed = SubResource("StyleBoxFlat_lhorl")
