@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqpjobh068c6u"]
+[gd_scene load_steps=7 format=3 uid="uid://bqpjobh068c6u"]
 
 [ext_resource type="Script" uid="uid://4ih31e7yg172" path="res://Assets/Scripts/SettingsScript.gd" id="1_f2bev"]
-[ext_resource type="FontFile" uid="uid://cg1ws2b6akn1d" path="res://Assets/Fonts/HomeVideo-BLG6G.ttf" id="2_qx0sc"]
 [ext_resource type="Theme" uid="uid://ow000d0w1g6a" path="res://Assets/Custom Themes/SettingsTheme.tres" id="3_m1o7v"]
 
 [sub_resource type="Animation" id="Animation_m1o7v"]
@@ -115,7 +114,6 @@ layout_mode = 2
 [node name="ResolutionLabel" type="Label" parent="ResolutionRow"]
 layout_mode = 2
 theme = ExtResource("3_m1o7v")
-theme_override_fonts/font = ExtResource("2_qx0sc")
 text = "Browser Resolution "
 
 [node name="ResolutionOption" type="OptionButton" parent="ResolutionRow"]
@@ -138,7 +136,7 @@ popup/item_5/id = 5
 
 [node name="SettingsMargins" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 20
 
 [node name="SettingsButtonContainer" type="HBoxContainer" parent="SettingsMargins"]
 layout_mode = 2

@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqj23206f0dsw"]
+[gd_scene load_steps=17 format=3 uid="uid://dqj23206f0dsw"]
 
 [ext_resource type="Texture2D" uid="uid://b24t74v8syjmc" path="res://Assets/Textures/PNGs/Backgrounds/OptionsBackground.png" id="1_6kbbk"]
-[ext_resource type="FontFile" uid="uid://dae18p1tels8n" path="res://Assets/Fonts/TechnoRaceItalic-eZRWe.otf" id="1_t8e73"]
 [ext_resource type="Texture2D" uid="uid://d4f1gstadffqk" path="res://Assets/Textures/PNGs/Icons/PowerIcon.png" id="1_wbwc7"]
 [ext_resource type="Script" uid="uid://b8bpjmq8dahd5" path="res://Assets/Scripts/DefaultScript.gd" id="1_wmgoe"]
+[ext_resource type="FontFile" uid="uid://jei8ia4kpihy" path="res://Assets/Fonts/MotivaSansExtraBold.ttf" id="3_xvm51"]
 [ext_resource type="Texture2D" uid="uid://qb2hoeibf52k" path="res://Assets/Textures/PNGs/Icons/SettingsIcon.png" id="3_y4ecp"]
 [ext_resource type="Theme" uid="uid://ggaet022hl5u" path="res://Assets/Custom Themes/SideButtonTheme.tres" id="4_ww48f"]
 [ext_resource type="Texture2D" uid="uid://cjuji1mc6cdxl" path="res://Assets/Textures/PNGs/Icons/SettingsIcon-Pressed.png" id="5_frl37"]
@@ -12,7 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://be7f67egfyd3o" path="res://Assets/Textures/PNGs/Icons/PowerIcon-Pressed.png" id="8_utu8n"]
 [ext_resource type="Texture2D" uid="uid://d1n3screhwtk" path="res://Assets/Textures/PNGs/Icons/PowerIcon-Hover.png" id="9_lhorl"]
 [ext_resource type="PackedScene" uid="uid://bqpjobh068c6u" path="res://Assets/Scenes/SettingsScene.tscn" id="11_utu8n"]
-[ext_resource type="FontFile" uid="uid://cg1ws2b6akn1d" path="res://Assets/Fonts/HomeVideo-BLG6G.ttf" id="13_lhorl"]
+[ext_resource type="Texture2D" uid="uid://dt52vmmbcr7g4" path="res://Assets/Textures/PNGs/Backgrounds/Shader.png" id="12_lv5e7"]
+[ext_resource type="Theme" uid="uid://ow000d0w1g6a" path="res://Assets/Custom Themes/SettingsTheme.tres" id="13_xvm51"]
+[ext_resource type="FontFile" uid="uid://cot8h8sgty5bp" path="res://Assets/Fonts/MotivaSansBlack.woff.ttf" id="15_lv5e7"]
+[ext_resource type="AudioStream" uid="uid://bv63xjbpfg0xp" path="res://Assets/Sounds/BlipSound.wav" id="16_8f2q7"]
 
 [node name="DefaultScene" type="Control"]
 layout_mode = 3
@@ -63,7 +66,7 @@ layout_mode = 2
 [node name="AppTitle" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
 layout_mode = 2
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("1_t8e73")
+theme_override_fonts/font = ExtResource("3_xvm51")
 theme_override_font_sizes/font_size = 30
 text = "Steam Deck Streaming"
 horizontal_alignment = 1
@@ -72,7 +75,7 @@ vertical_alignment = 1
 [node name="AppVersion" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
 layout_mode = 2
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("1_t8e73")
+theme_override_fonts/font = ExtResource("3_xvm51")
 theme_override_font_sizes/font_size = 23
 text = "v0.01"
 horizontal_alignment = 1
@@ -81,6 +84,7 @@ vertical_alignment = 1
 [node name="ServicesBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Amazon" type="Button" parent="DefaultBox/OptionsBackground/OptionsBox/ServicesBox"]
@@ -195,22 +199,41 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TopShader" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
+[node name="TopTexture" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
+texture = ExtResource("12_lv5e7")
 
 [node name="PreviewImage" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 custom_minimum_size = Vector2(0, 720)
 layout_mode = 2
 
-[node name="BottomShader" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
+[node name="BottomTexture" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
+texture = ExtResource("12_lv5e7")
+flip_v = true
 
 [node name="SettingsMenu" parent="DefaultBox/PreviewBackground" instance=ExtResource("11_utu8n")]
 layout_mode = 1
 offset_left = 1290.0
 offset_right = 1822.0
+
+[node name="ClockMarginContainer" type="MarginContainer" parent="DefaultBox/PreviewBackground"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="ClockLabel" type="Label" parent="DefaultBox/PreviewBackground/ClockMarginContainer"]
+layout_mode = 2
+theme = ExtResource("13_xvm51")
+theme_override_font_sizes/font_size = 25
 
 [node name="ErrorMarginContainer" type="MarginContainer" parent="DefaultBox/PreviewBackground"]
 visible = false
@@ -237,7 +260,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("13_lhorl")
+theme_override_fonts/font = ExtResource("15_lv5e7")
 theme_override_font_sizes/font_size = 20
 text = "Error Type: "
 
@@ -246,11 +269,14 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("13_lhorl")
+theme_override_fonts/font = ExtResource("15_lv5e7")
 theme_override_font_sizes/font_size = 20
 text = "Test Error Message"
 
 [node name="MenuAnimations" type="AnimationPlayer" parent="."]
+
+[node name="MenuSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_8f2q7")
 
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_service_button_mouse_entered" binds= ["PrimeVideo"]]
 [connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_any_mouse_exited"]

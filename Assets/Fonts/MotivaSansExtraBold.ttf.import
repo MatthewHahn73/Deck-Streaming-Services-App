@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dae18p1tels8n"
-path="res://.godot/imported/TechnoRaceItalic-eZRWe.otf-4480661aa22a6d8de039ec6ecbe4bd49.fontdata"
+uid="uid://jei8ia4kpihy"
+path="res://.godot/imported/MotivaSansExtraBold.ttf-6f536a2ad0d275a2a508ac32d5b6bea7.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/TechnoRaceItalic-eZRWe.otf"
-dest_files=["res://.godot/imported/TechnoRaceItalic-eZRWe.otf-4480661aa22a6d8de039ec6ecbe4bd49.fontdata"]
+source_file="res://Assets/Fonts/MotivaSansExtraBold.ttf"
+dest_files=["res://.godot/imported/MotivaSansExtraBold.ttf-6f536a2ad0d275a2a508ac32d5b6bea7.fontdata"]
 
 [params]
 

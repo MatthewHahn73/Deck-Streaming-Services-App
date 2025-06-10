@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://ggaet022hl5u"]
 
-[ext_resource type="FontFile" uid="uid://dae18p1tels8n" path="res://Assets/Fonts/TechnoRaceItalic-eZRWe.otf" id="1_uci8e"]
+[ext_resource type="FontFile" uid="uid://cot8h8sgty5bp" path="res://Assets/Fonts/MotivaSansBlack.woff.ttf" id="2_qwehw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwehw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -23,9 +23,10 @@ bg_color = Color(0.0133572, 0.164352, 0.224633, 1)
 Button/colors/font_disabled_color = Color(0.341176, 0.341176, 0.341176, 1)
 Button/constants/outline_size = 7
 Button/font_sizes/font_size = 22
-Button/fonts/font = ExtResource("1_uci8e")
+Button/fonts/font = ExtResource("2_qwehw")
 Button/styles/disabled = SubResource("StyleBoxFlat_qwehw")
 Button/styles/focus = SubResource("StyleBoxEmpty_uci8e")
 Button/styles/hover = SubResource("StyleBoxFlat_utu8n")
 Button/styles/normal = SubResource("StyleBoxEmpty_utu8n")
 Button/styles/pressed = SubResource("StyleBoxFlat_lhorl")
+Label/fonts/font = ExtResource("2_qwehw")

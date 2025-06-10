@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dafu8jee3tq15"
-path="res://.godot/imported/Hulu.png-f57601c1331ed8bb99c94a19249bae5f.ctex"
+uid="uid://dt52vmmbcr7g4"
+path="res://.godot/imported/Shader.png-7648ba3c79a0eafef1e2cc94cf00911e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/PNGs/StreamingBackgrounds/Hulu.png"
-dest_files=["res://.godot/imported/Hulu.png-f57601c1331ed8bb99c94a19249bae5f.ctex"]
+source_file="res://Assets/Textures/PNGs/Backgrounds/Shader.png"
+dest_files=["res://.godot/imported/Shader.png-7648ba3c79a0eafef1e2cc94cf00911e.ctex"]
 
 [params]
 

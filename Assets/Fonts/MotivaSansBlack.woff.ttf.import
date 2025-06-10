@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cg1ws2b6akn1d"
-path="res://.godot/imported/HomeVideo-BLG6G.ttf-e9a5c87dc84fd2bc151d819715aed289.fontdata"
+uid="uid://cot8h8sgty5bp"
+path="res://.godot/imported/MotivaSansBlack.woff.ttf-82c8f9acb92dcd20c196f35ad7bd7377.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/HomeVideo-BLG6G.ttf"
-dest_files=["res://.godot/imported/HomeVideo-BLG6G.ttf-e9a5c87dc84fd2bc151d819715aed289.fontdata"]
+source_file="res://Assets/Fonts/MotivaSansBlack.woff.ttf"
+dest_files=["res://.godot/imported/MotivaSansBlack.woff.ttf-82c8f9acb92dcd20c196f35ad7bd7377.fontdata"]
 
 [params]
 
