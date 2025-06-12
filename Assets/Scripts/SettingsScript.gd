@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 #Node Variables
+@onready var BrowserOption: OptionButton = $BrowserRow/BrowserOption
 @onready var ResolutionOption: OptionButton = $ResolutionRow/ResolutionOption
 @onready var SaveButton: Button = $SettingsMargins/SettingsButtonContainer/SaveButton
 @onready var SettingsAnimations: AnimationPlayer = $SettingsAnimations
@@ -9,8 +10,20 @@ extends VBoxContainer
 
 #General Variables
 var SettingsLocation = "res://Streaming/Config/Settings.json"
+var BrowserTableLocation = "res://Assets/JSON/BrowserFlatpaks.json"
+var BrowserTable = {}
 
 #Custom Functions
+func LoadAvailableBrowserData() -> void: 
+	var BrowserTableFile = FileAccess.open(BrowserTableLocation, FileAccess.READ)
+	if BrowserTableFile != null:
+		var BrowserTableJSON = JSON.new() 
+		if BrowserTableJSON.parse(BrowserTableFile.get_as_text()) == 0: 
+			BrowserTable = BrowserTableJSON.data 
+	for Key in BrowserTable: 
+		if FlatpakIsInstalled(BrowserTable[Key]["Flatpak"]):
+			BrowserOption.add_item(BrowserTable[Key]["Name"], int(Key)) 
+	
 func LoadSettings() -> void: 
 	#Check if file exists, if it doesn't create one
 	var SettingsFile = FileAccess.open(SettingsLocation, FileAccess.READ)
@@ -19,6 +32,7 @@ func LoadSettings() -> void:
 		if SettingsJSON.parse(SettingsFile.get_as_text()) == 0: 
 			var SettingsData = SettingsJSON.data 
 			ResolutionOption.selected = SettingsData["Resolution"]
+			BrowserOption.selected = SettingsData["Browser"]
 		else:
 			DefaultScript.UpdateErrorLabel("IOError", "Unable to load settings from '" + SettingsLocation + "'")
 		SettingsFile.close()
@@ -31,14 +45,23 @@ func SaveSettings() -> void:
 	var SettingsFile = FileAccess.open(SettingsLocation, FileAccess.WRITE)
 	var SettingsJSON = JSON.new() 
 	SettingsJSON = {
-		"Resolution" : ResolutionOption.selected if ResolutionOption.selected != -1 else 5
+		"Resolution" : ResolutionOption.selected if ResolutionOption.selected != -1 else 5,
+		"Browser" : ResolutionOption.selected if ResolutionOption.selected != -1 else 0
 	}
 	SettingsFile.store_string(JSON.stringify(SettingsJSON))
 	SettingsFile.close()
 	
+func FlatpakIsInstalled(Program: String) -> bool: 
+	var TerminalOutput = [] 
+	OS.execute("flatpak", ["list", "--app"], TerminalOutput) 
+	if Program in TerminalOutput[0]:
+		return true 
+	return false
+	
 #Trigger Functions
 func _ready() -> void:
 	SaveButton.disabled = true
+	LoadAvailableBrowserData()
 
 func _on_settings_save_button_pressed() -> void:
 	SaveSettings()

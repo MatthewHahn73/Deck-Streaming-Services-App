@@ -14,42 +14,35 @@ extends Control
 #General Variables
 var DoChangePreview = true
 var ScriptSettingsLocation = "res://Streaming/Config/Streaming.conf"
-var StreamingLinks = {
-	"Youtube" : "https://www.youtube.com/", 
-	"PrimeVideo" : "https://www.amazon.com/video", 
-	"Netflix" : "https://www.netflix.com/", 
-	"HBOMax" : "https://www.max.com/",
-	"Hulu" : "https://www.hulu.com/streaming",
-	"AppleTV" : "https://tv.apple.com/", 
-	"Disney" : "https://www.disneyplus.com/", 
-	"Paramount" : "https://www.paramountplus.com/", 
-}
+var StreamingLinksLocation = "res://Assets/JSON/StreamingLinks.json"
+var StreamingLinks = {}
 
 #Custom Functions
-func ToggleButtonsDisabled(Toggle: bool) -> void: 
-	DoChangePreview = !Toggle
-	for StreamingButton in ServicesBox.get_children():
-		StreamingButton.disabled = Toggle
-		
-func ToggleSettingsMenu(Toggle: bool) -> void: 
-	SettingsMenu.SettingsAnimations.play("Load In" if Toggle else "Load Out")
-		
-func UpdateErrorLabel(ErrorTypeString: String, ErrorTypeMessage: String):
-	ErrorType.text = ErrorTypeString + ": "
-	ErrorMessage.text = ErrorTypeMessage
-	ErrorContainer.visible = true 
-	
-func HideErrorLabel() -> void:
-	ErrorContainer.visible = false 
-	
-func LoadScriptSettings() -> void:
-	var BlueprintFile = FileAccess.open("res://Streaming/Config/StreamingBlueprint.conf", FileAccess.READ)
+func LoadStreamingLinks() -> void:
+	var StreamingLinksFile = FileAccess.open(StreamingLinksLocation, FileAccess.READ)
+	if StreamingLinksFile != null:
+		var StreamingLinksJSON = JSON.new() 
+		if StreamingLinksJSON.parse(StreamingLinksFile.get_as_text()) == 0: 
+			StreamingLinks = StreamingLinksJSON.data 
+
+func LoadBashScriptSettings() -> void:
+	var ConfFileLocation = "res://Streaming/Config/StreamingBlueprint.conf"
+	var BlueprintFile = FileAccess.open(ConfFileLocation, FileAccess.READ)
 	if BlueprintFile != null:
-		var ResolutionText = SettingsMenu.ResolutionOption.get_item_text(SettingsMenu.ResolutionOption.selected).replace("×", ",")
-		var BlueprintText = BlueprintFile.get_as_text().replace("<WindowSize>", ResolutionText)
-		if BlueprintText:
-			var ConfFile = FileAccess.open("res://Streaming/Config/Streaming.conf", FileAccess.WRITE)
-			ConfFile.store_string(BlueprintText)
+		var BrowserFlatpakLink = SettingsMenu.BrowserTable[str(SettingsMenu.BrowserOption.selected)]["Flatpak"]
+		if SettingsMenu.FlatpakIsInstalled(BrowserFlatpakLink):
+			var BlueprintText = BlueprintFile.get_as_text()
+			if BlueprintText:	#Load the resolution/browser settings
+				var ResolutionText = SettingsMenu.ResolutionOption.get_item_text(SettingsMenu.ResolutionOption.selected).replace("×", ",")
+				var ConfFile = FileAccess.open("res://Streaming/Config/Streaming.conf", FileAccess.WRITE)
+				BlueprintText = BlueprintText.replace("<WindowSize>", ResolutionText).replace("<Browser>", BrowserFlatpakLink)
+				ConfFile.store_string(BlueprintText)
+				ConfFile.close()
+			else:
+				UpdateErrorLabel("Error", "Unable to load the conf file at " + ConfFileLocation)
+		else:
+			UpdateErrorLabel("Error", "Unable to load flatpak " + BrowserFlatpakLink)
+	BlueprintFile.close()
 	
 func LoadVersion() -> void: 
 	var VersionFileLocation = "res://Version.json"
@@ -63,16 +56,38 @@ func LoadVersion() -> void:
 			UpdateErrorLabel("IOError", "Unable to load data from '" + VersionFileLocation + "'")
 	else:
 		UpdateErrorLabel("IOError", "Unable to open '" + VersionFileLocation + "'")
+
+func ToggleButtonsDisabled(Toggle: bool) -> void: 
+	DoChangePreview = !Toggle
+	for StreamingButton in ServicesBox.get_children():
+		StreamingButton.disabled = Toggle
+		
+func ToggleSettingsMenu(Toggle: bool) -> void: 
+	SettingsMenu.SettingsAnimations.play("Load In" if Toggle else "Load Out")
+		
+func UpdateClock() -> void:
+	var time = Time.get_time_dict_from_system()
+	var meridiem = ("AM" if time.hour < 12 else "PM")
+	var hour = time.hour % 12 if time.hour != 0 else 1
+	ClockLabel.text = "%2d:%02d %s" % [hour, time.minute, meridiem]
+
+func UpdateErrorLabel(ErrorTypeString: String, ErrorTypeMessage: String):
+	ErrorType.text = ErrorTypeString + ": "
+	ErrorMessage.text = ErrorTypeMessage
+	ErrorContainer.visible = true 
 	
+func HideErrorLabel() -> void:
+	ErrorContainer.visible = false 
+			
 #Trigger Functions
 func _ready() -> void:
 	LoadVersion()
+	LoadStreamingLinks()
 	SettingsMenu.LoadSettings()
 	
 func _process(_delta: float):
-	var time = Time.get_time_dict_from_system()
-	var meridiem = ("AM" if time.hour < 12 else "PM")
-	ClockLabel.text = "%2d:%02d %s" % [time.hour % 12, time.minute, meridiem]
+	UpdateClock()
+	await get_tree().create_timer(1.0).timeout
 		
 func _on_service_button_mouse_entered(ServiceType: String) -> void:
 	MenuSounds.play()
@@ -83,7 +98,7 @@ func _on_any_mouse_exited() -> void:
 	PreviewImage.texture = load("res://Assets/Textures/PNGs/Backgrounds/BlankBackground.png")
 
 func _on_any_service_button_pressed(ServiceType: String) -> void:
-	LoadScriptSettings()
+	LoadBashScriptSettings()
 	OS.execute_with_pipe("bash", ["Streaming/LaunchApp.sh", StreamingLinks[ServiceType]])
 	_on_power_pressed()
 

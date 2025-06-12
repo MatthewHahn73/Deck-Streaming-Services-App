@@ -108,17 +108,34 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("1_f2bev")
 
+[node name="BrowserRow" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="BrowserLabel" type="Label" parent="BrowserRow"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_m1o7v")
+text = "Browser "
+
+[node name="BrowserOption" type="OptionButton" parent="BrowserRow"]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("3_m1o7v")
+
 [node name="ResolutionRow" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="ResolutionLabel" type="Label" parent="ResolutionRow"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("3_m1o7v")
 text = "Browser Resolution "
 
 [node name="ResolutionOption" type="OptionButton" parent="ResolutionRow"]
 custom_minimum_size = Vector2(300, 35)
 layout_mode = 2
+size_flags_horizontal = 10
 theme = ExtResource("3_m1o7v")
 item_count = 6
 popup/item_0/text = "3840×2160"
@@ -161,6 +178,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_k2e57")
 }
 
+[connection signal="item_selected" from="BrowserRow/BrowserOption" to="." method="_on_resolution_option_item_selected"]
 [connection signal="item_selected" from="ResolutionRow/ResolutionOption" to="." method="_on_resolution_option_item_selected"]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/SaveButton" to="." method="_on_settings_save_button_pressed"]
