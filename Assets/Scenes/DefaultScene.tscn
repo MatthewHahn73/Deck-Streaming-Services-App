@@ -77,7 +77,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_xvm51")
 theme_override_font_sizes/font_size = 23
-text = "v0.01"
+text = "v0.00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -275,8 +275,9 @@ text = "Test Error Message"
 
 [node name="MenuAnimations" type="AnimationPlayer" parent="."]
 
-[node name="MenuSounds" type="AudioStreamPlayer2D" parent="."]
+[node name="MenuSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_8f2q7")
+volume_db = -5.0
 
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_service_button_mouse_entered" binds= ["PrimeVideo"]]
 [connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_any_mouse_exited"]

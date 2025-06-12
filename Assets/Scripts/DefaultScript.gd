@@ -9,7 +9,7 @@ extends Control
 @onready var ErrorContainer: MarginContainer = $DefaultBox/PreviewBackground/ErrorMarginContainer
 @onready var ErrorType: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorType
 @onready var ErrorMessage: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorMessage
-@onready var MenuSounds: AudioStreamPlayer2D = $MenuSounds
+@onready var MenuSounds: AudioStreamPlayer = $MenuSounds
 
 #General Variables
 var DoChangePreview = true
@@ -25,27 +25,32 @@ func LoadStreamingLinks() -> void:
 		if StreamingLinksJSON.parse(StreamingLinksFile.get_as_text()) == 0: 
 			StreamingLinks = StreamingLinksJSON.data 
 
-func LoadBashScriptSettings() -> void:
+func LoadBashScriptSettings() -> int:
 	var ConfFileLocation = "res://Streaming/Config/StreamingBlueprint.conf"
 	var BlueprintFile = FileAccess.open(ConfFileLocation, FileAccess.READ)
 	if BlueprintFile != null:
-		var BrowserFlatpakLink = SettingsMenu.BrowserTable[str(SettingsMenu.BrowserOption.selected)]["Flatpak"]
-		if SettingsMenu.FlatpakIsInstalled(BrowserFlatpakLink):
-			var BlueprintText = BlueprintFile.get_as_text()
-			if BlueprintText:	#Load the resolution/browser settings
-				var ResolutionText = SettingsMenu.ResolutionOption.get_item_text(SettingsMenu.ResolutionOption.selected).replace("×", ",")
-				var ConfFile = FileAccess.open("res://Streaming/Config/Streaming.conf", FileAccess.WRITE)
-				BlueprintText = BlueprintText.replace("<WindowSize>", ResolutionText).replace("<Browser>", BrowserFlatpakLink)
-				ConfFile.store_string(BlueprintText)
-				ConfFile.close()
+		if SettingsMenu.BrowserOption.selected != -1:
+			var BrowserFlatpakLink = SettingsMenu.BrowserTable[str(SettingsMenu.BrowserOption.selected)]["Flatpak"]
+			if SettingsMenu.FlatpakIsInstalled(BrowserFlatpakLink) == 0:
+				var BlueprintText = BlueprintFile.get_as_text()
+				if BlueprintText:	#Load the resolution/browser settings
+					var ResolutionText = SettingsMenu.ResolutionOption.get_item_text(SettingsMenu.ResolutionOption.selected).replace("×", ",")
+					var ConfFile = FileAccess.open("res://Streaming/Config/Streaming.conf", FileAccess.WRITE)
+					BlueprintText = BlueprintText.replace("<WindowSize>", ResolutionText).replace("<Browser>", BrowserFlatpakLink)
+					ConfFile.store_string(BlueprintText)
+					ConfFile.close()
+					return 0
+				else:
+					UpdateErrorLabel("Error", "Unable to load the conf file at " + ConfFileLocation)
 			else:
-				UpdateErrorLabel("Error", "Unable to load the conf file at " + ConfFileLocation)
+				UpdateErrorLabel("Error", "Unable to find selected flatpak " + BrowserFlatpakLink)
 		else:
-			UpdateErrorLabel("Error", "Unable to load flatpak " + BrowserFlatpakLink)
+			UpdateErrorLabel("Error", "Unable to find an installed flatpak browser")
 	BlueprintFile.close()
+	return 1
 	
 func LoadVersion() -> void: 
-	var VersionFileLocation = "res://Version.json"
+	var VersionFileLocation = "res://Assets/JSON/Version.json"
 	var VersionFile = FileAccess.open(VersionFileLocation, FileAccess.READ)
 	if VersionFile != null:
 		var VersionJSON = JSON.new() 
@@ -68,7 +73,7 @@ func ToggleSettingsMenu(Toggle: bool) -> void:
 func UpdateClock() -> void:
 	var time = Time.get_time_dict_from_system()
 	var meridiem = ("AM" if time.hour < 12 else "PM")
-	var hour = time.hour % 12 if time.hour != 0 else 1
+	var hour = time.hour % 12 if time.hour != 0 else 12
 	ClockLabel.text = "%2d:%02d %s" % [hour, time.minute, meridiem]
 
 func UpdateErrorLabel(ErrorTypeString: String, ErrorTypeMessage: String):
@@ -87,7 +92,7 @@ func _ready() -> void:
 	
 func _process(_delta: float):
 	UpdateClock()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0).timeout 		#Check every second instead of every frame
 		
 func _on_service_button_mouse_entered(ServiceType: String) -> void:
 	MenuSounds.play()
@@ -98,9 +103,9 @@ func _on_any_mouse_exited() -> void:
 	PreviewImage.texture = load("res://Assets/Textures/PNGs/Backgrounds/BlankBackground.png")
 
 func _on_any_service_button_pressed(ServiceType: String) -> void:
-	LoadBashScriptSettings()
-	OS.execute_with_pipe("bash", ["Streaming/LaunchApp.sh", StreamingLinks[ServiceType]])
-	_on_power_pressed()
+	if LoadBashScriptSettings() == 0:	#If script settings successfully loaded, launhc the browser
+		OS.execute_with_pipe("bash", ["Streaming/LaunchApp.sh", StreamingLinks[ServiceType]])
+		_on_power_pressed()
 
 func _on_settings_pressed() -> void:
 	ToggleButtonsDisabled(DoChangePreview) 

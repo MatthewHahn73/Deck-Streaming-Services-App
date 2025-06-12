@@ -3,13 +3,15 @@ extends VBoxContainer
 #Node Variables
 @onready var BrowserOption: OptionButton = $BrowserRow/BrowserOption
 @onready var ResolutionOption: OptionButton = $ResolutionRow/ResolutionOption
+@onready var BackButton: Button = $SettingsMargins/SettingsButtonContainer/BackButton
 @onready var SaveButton: Button = $SettingsMargins/SettingsButtonContainer/SaveButton
 @onready var SettingsAnimations: AnimationPlayer = $SettingsAnimations
 @onready var SettingsMenu: VBoxContainer = $"."
+@onready var SettingSounds: AudioStreamPlayer = $MenuSounds
 @onready var DefaultScript: Control = get_parent().get_parent().get_parent()
 
 #General Variables
-var SettingsLocation = "res://Streaming/Config/Settings.json"
+var SettingsLocation = "res://Assets/JSON/Settings.json"
 var BrowserTableLocation = "res://Assets/JSON/BrowserFlatpaks.json"
 var BrowserTable = {}
 
@@ -21,7 +23,7 @@ func LoadAvailableBrowserData() -> void:
 		if BrowserTableJSON.parse(BrowserTableFile.get_as_text()) == 0: 
 			BrowserTable = BrowserTableJSON.data 
 	for Key in BrowserTable: 
-		if FlatpakIsInstalled(BrowserTable[Key]["Flatpak"]):
+		if FlatpakIsInstalled(BrowserTable[Key]["Flatpak"]) == 0:
 			BrowserOption.add_item(BrowserTable[Key]["Name"], int(Key)) 
 	
 func LoadSettings() -> void: 
@@ -51,15 +53,17 @@ func SaveSettings() -> void:
 	SettingsFile.store_string(JSON.stringify(SettingsJSON))
 	SettingsFile.close()
 	
-func FlatpakIsInstalled(Program: String) -> bool: 
+func FlatpakIsInstalled(Program: String) -> int: 
 	var TerminalOutput = [] 
 	OS.execute("flatpak", ["list", "--app"], TerminalOutput) 
 	if Program in TerminalOutput[0]:
-		return true 
-	return false
+		return 0 
+	return 1
 	
 #Trigger Functions
 func _ready() -> void:
+	BackButton.connect("mouse_entered", _on_button_mouse_entered.bind(BackButton))
+	SaveButton.connect("mouse_entered", _on_button_mouse_entered.bind(SaveButton))
 	SaveButton.disabled = true
 	LoadAvailableBrowserData()
 
@@ -75,5 +79,6 @@ func _on_resolution_option_item_selected(_index: int) -> void:
 	if SaveButton.disabled:
 		SaveButton.disabled = false
 
-func _on_settings_animations_animation_finished(_AnimationName: StringName) -> void:
-	pass
+func _on_button_mouse_entered(ButtonSelected: Button) -> void:
+	if !ButtonSelected.disabled:
+		SettingSounds.play()
