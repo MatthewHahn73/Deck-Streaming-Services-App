@@ -10,6 +10,7 @@ extends Control
 @onready var ErrorType: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorType
 @onready var ErrorMessage: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorMessage
 @onready var MenuSounds: AudioStreamPlayer = $MenuSounds
+@onready var MenuAnimations: AnimationPlayer = $MenuAnimations
 
 #General Variables
 var DoChangePreview = true
@@ -98,9 +99,13 @@ func _on_service_button_mouse_entered(ServiceType: String) -> void:
 	MenuSounds.play()
 	if DoChangePreview:
 		PreviewImage.texture = load("res://Assets/Textures/PNGs/StreamingBackgrounds/" + ServiceType + ".png")
-	
+		MenuAnimations.play("Preview Fade In")
+		
+func _on_other_buttons_mouse_entered() -> void:
+	MenuSounds.play()
+		
 func _on_any_mouse_exited() -> void:
-	PreviewImage.texture = load("res://Assets/Textures/PNGs/Backgrounds/BlankBackground.png")
+	MenuAnimations.play("Preview Fade Out")
 
 func _on_any_service_button_pressed(ServiceType: String) -> void:
 	if LoadBashScriptSettings() == 0:	#If script settings successfully loaded, launhc the browser
@@ -113,3 +118,9 @@ func _on_settings_pressed() -> void:
 
 func _on_power_pressed() -> void:
 	get_tree().quit()
+
+func _on_menu_animations_animation_finished(AnimationName: StringName) -> void:
+	if AnimationName == "Preview Fade In":
+		PreviewImage.visible = true
+	elif AnimationName == "Preivew Fade Out": 
+		PreviewImage.visible = false

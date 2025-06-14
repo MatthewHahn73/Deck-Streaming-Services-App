@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqj23206f0dsw"]
+[gd_scene load_steps=21 format=3 uid="uid://dqj23206f0dsw"]
 
 [ext_resource type="Texture2D" uid="uid://b24t74v8syjmc" path="res://Assets/Textures/PNGs/Backgrounds/OptionsBackground.png" id="1_6kbbk"]
 [ext_resource type="Texture2D" uid="uid://d4f1gstadffqk" path="res://Assets/Textures/PNGs/Icons/PowerIcon.png" id="1_wbwc7"]
@@ -16,6 +16,60 @@
 [ext_resource type="Theme" uid="uid://ow000d0w1g6a" path="res://Assets/Custom Themes/SettingsTheme.tres" id="13_xvm51"]
 [ext_resource type="FontFile" uid="uid://cot8h8sgty5bp" path="res://Assets/Fonts/MotivaSansBlack.woff.ttf" id="15_lv5e7"]
 [ext_resource type="AudioStream" uid="uid://bv63xjbpfg0xp" path="res://Assets/Sounds/BlipSound.wav" id="16_8f2q7"]
+
+[sub_resource type="Animation" id="Animation_8f2q7"]
+resource_name = "Preview Fade In"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_phmlg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fa1qr"]
+resource_name = "Preview Fade Out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fa1qr"]
+_data = {
+&"Preview Fade In": SubResource("Animation_8f2q7"),
+&"Preview Fade Out": SubResource("Animation_fa1qr"),
+&"RESET": SubResource("Animation_phmlg")
+}
 
 [node name="DefaultScene" type="Control"]
 layout_mode = 3
@@ -76,7 +130,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_xvm51")
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 20
 text = "v0.00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -162,12 +216,12 @@ layout_mode = 2
 size_flags_vertical = 8
 alignment = 1
 
-[node name="Settings" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+[node name="Power" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-texture_normal = ExtResource("3_y4ecp")
-texture_pressed = ExtResource("5_frl37")
-texture_hover = ExtResource("6_utu8n")
+texture_normal = ExtResource("1_wbwc7")
+texture_pressed = ExtResource("8_utu8n")
+texture_hover = ExtResource("9_lhorl")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -175,12 +229,12 @@ stretch_mode = 0
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="Power" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
+[node name="Settings" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-texture_normal = ExtResource("1_wbwc7")
-texture_pressed = ExtResource("8_utu8n")
-texture_hover = ExtResource("9_lhorl")
+texture_normal = ExtResource("3_y4ecp")
+texture_pressed = ExtResource("5_frl37")
+texture_hover = ExtResource("6_utu8n")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -200,16 +254,18 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="TopTexture" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
-custom_minimum_size = Vector2(0, 180)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 texture = ExtResource("12_lv5e7")
+stretch_mode = 5
 
 [node name="PreviewImage" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
-custom_minimum_size = Vector2(0, 720)
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 680)
 layout_mode = 2
 
 [node name="BottomTexture" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
-custom_minimum_size = Vector2(0, 180)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 texture = ExtResource("12_lv5e7")
 flip_v = true
@@ -274,6 +330,9 @@ theme_override_font_sizes/font_size = 20
 text = "Test Error Message"
 
 [node name="MenuAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fa1qr")
+}
 
 [node name="MenuSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_8f2q7")
@@ -303,5 +362,8 @@ volume_db = -5.0
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_service_button_mouse_entered" binds= ["Youtube"]]
 [connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_any_mouse_exited"]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_any_service_button_pressed" binds= ["Youtube"]]
-[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Power" to="." method="_on_other_buttons_mouse_entered"]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Power" to="." method="_on_power_pressed"]
+[connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_other_buttons_mouse_entered"]
+[connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_settings_pressed"]
+[connection signal="animation_finished" from="MenuAnimations" to="." method="_on_menu_animations_animation_finished"]

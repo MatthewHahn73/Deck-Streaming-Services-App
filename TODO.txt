@@ -1,7 +1,0 @@
-TODO
-	-Modify the StreamingBackgrounds files to either just be the logo or fade out to transparent 
-	-Add in some additional thunk or click like sounds for the drop down boxes
-	-Create an icon for the application and set it in godot settings
-	-Create a hero/long hero, grid, and logo for the steam artwork
-	-Look into controller support for the menu
-		-Might break things since the steam controller layout will be required for the browser

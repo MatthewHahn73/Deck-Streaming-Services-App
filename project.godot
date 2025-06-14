@@ -14,7 +14,10 @@ config/name="Streaming Services App"
 run/main_scene="uid://dqj23206f0dsw"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=165
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="uid://bwpnnksr10goi"
 
 [display]
 

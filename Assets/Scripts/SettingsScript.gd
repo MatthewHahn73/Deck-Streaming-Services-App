@@ -8,6 +8,7 @@ extends VBoxContainer
 @onready var SettingsAnimations: AnimationPlayer = $SettingsAnimations
 @onready var SettingsMenu: VBoxContainer = $"."
 @onready var SettingSounds: AudioStreamPlayer = $MenuSounds
+@onready var MenuClicks: AudioStreamPlayer = $MenuClicks
 @onready var DefaultScript: Control = get_parent().get_parent().get_parent()
 
 #General Variables
@@ -76,8 +77,12 @@ func _on_back_button_pressed() -> void:
 	DefaultScript._on_settings_pressed() 
 
 func _on_resolution_option_item_selected(_index: int) -> void:
+	MenuClicks.play()
 	if SaveButton.disabled:
 		SaveButton.disabled = false
+
+func _on_browser_option_pressed() -> void:
+	MenuClicks.play()
 
 func _on_button_mouse_entered(ButtonSelected: Button) -> void:
 	if !ButtonSelected.disabled:

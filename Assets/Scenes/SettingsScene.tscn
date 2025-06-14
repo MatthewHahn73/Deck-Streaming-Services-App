@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqpjobh068c6u"]
+[gd_scene load_steps=9 format=3 uid="uid://bqpjobh068c6u"]
 
 [ext_resource type="Script" uid="uid://4ih31e7yg172" path="res://Assets/Scripts/SettingsScript.gd" id="1_f2bev"]
 [ext_resource type="AudioStream" uid="uid://bv63xjbpfg0xp" path="res://Assets/Sounds/BlipSound.wav" id="3_lqgjh"]
 [ext_resource type="Theme" uid="uid://ow000d0w1g6a" path="res://Assets/Custom Themes/SettingsTheme.tres" id="3_m1o7v"]
+[ext_resource type="AudioStream" uid="uid://cuwo3d8m3or0s" path="res://Assets/Sounds/Select.wav" id="4_lqgjh"]
 
 [sub_resource type="Animation" id="Animation_m1o7v"]
 resource_name = "Load In"
@@ -183,8 +184,14 @@ libraries = {
 stream = ExtResource("3_lqgjh")
 volume_db = -5.0
 
+[node name="MenuClicks" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lqgjh")
+volume_db = -5.0
+
 [connection signal="item_selected" from="BrowserRow/BrowserOption" to="." method="_on_resolution_option_item_selected"]
+[connection signal="pressed" from="BrowserRow/BrowserOption" to="." method="_on_browser_option_pressed"]
 [connection signal="item_selected" from="ResolutionRow/ResolutionOption" to="." method="_on_resolution_option_item_selected"]
+[connection signal="pressed" from="ResolutionRow/ResolutionOption" to="." method="_on_browser_option_pressed"]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/SaveButton" to="." method="_on_settings_save_button_pressed"]
 [connection signal="animation_finished" from="SettingsAnimations" to="." method="_on_settings_animations_animation_finished"]
