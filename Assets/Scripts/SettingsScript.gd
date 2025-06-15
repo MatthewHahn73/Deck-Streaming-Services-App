@@ -11,7 +11,7 @@ extends VBoxContainer
 @onready var DefaultScript: Control = get_parent().get_parent().get_parent().get_parent()
 
 #General Variables
-var SettingsLocation = "res://Assets/JSON/Settings.json"
+var SettingsLocation = "res://Streaming/Config/Settings.json"
 var BrowserTableLocation = "res://Assets/JSON/BrowserFlatpaks.json"
 var BrowserTable = {}
 
@@ -60,10 +60,17 @@ func FlatpakIsInstalled(Program: String) -> int:
 		return 0 
 	return 1
 	
+func ReturnButtonFromType(Type: String) -> Button:
+	match Type:
+		"Back":
+			return $SettingsMargins/SettingsButtonContainer/BackButton
+		"Save":
+			return $SettingsMargins/SettingsButtonContainer/SaveButton
+		_:
+			return null
+	
 #Trigger Functions
 func _ready() -> void:
-	BackButton.connect("mouse_entered", _on_button_mouse_entered.bind(BackButton))
-	SaveButton.connect("mouse_entered", _on_button_mouse_entered.bind(SaveButton))
 	SaveButton.disabled = true
 	LoadAvailableBrowserData()
 
@@ -83,6 +90,7 @@ func _on_resolution_option_item_selected(_index: int) -> void:
 func _on_browser_option_pressed() -> void:
 	MenuClicks.play()
 
-func _on_button_mouse_entered(ButtonSelected: Button) -> void:
-	if !ButtonSelected.disabled:
+func _on_button_mouse_entered(ButtonType: String) -> void:
+	var ButtonEntered = ReturnButtonFromType(ButtonType)
+	if ButtonEntered != null && !ButtonEntered.disabled:
 		SettingSounds.play()

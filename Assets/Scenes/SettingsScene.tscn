@@ -11,13 +11,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -75.0
-offset_right = 300.0
-offset_bottom = 75.0
+offset_left = -275.0
+offset_top = -89.0
+offset_right = 275.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(266, 58)
+pivot_offset = Vector2(275, 89)
 alignment = 1
 script = ExtResource("1_f2bev")
 
@@ -31,7 +31,7 @@ theme = ExtResource("3_m1o7v")
 text = "Web Browser "
 
 [node name="BrowserOption" type="OptionButton" parent="BrowserRow"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("3_m1o7v")
@@ -46,23 +46,21 @@ theme = ExtResource("3_m1o7v")
 text = "Resolution "
 
 [node name="ResolutionOption" type="OptionButton" parent="ResolutionRow"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("3_m1o7v")
-item_count = 6
+item_count = 5
 popup/item_0/text = "3840×2160"
 popup/item_0/id = 0
 popup/item_1/text = "2560×1440"
 popup/item_1/id = 1
-popup/item_2/text = "1920×1080"
+popup/item_2/text = "1920×1080 (Default)"
 popup/item_2/id = 2
 popup/item_3/text = "1600×900"
 popup/item_3/id = 3
-popup/item_4/text = "1280×720"
+popup/item_4/text = "1280×800"
 popup/item_4/id = 4
-popup/item_5/text = "1024×640 (Default)"
-popup/item_5/id = 5
 
 [node name="SettingsMargins" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -73,14 +71,14 @@ layout_mode = 2
 alignment = 1
 
 [node name="BackButton" type="Button" parent="SettingsMargins/SettingsButtonContainer"]
-custom_minimum_size = Vector2(130, 40)
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_m1o7v")
 text = "Back"
 
 [node name="SaveButton" type="Button" parent="SettingsMargins/SettingsButtonContainer"]
-custom_minimum_size = Vector2(130, 40)
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_m1o7v")
@@ -98,5 +96,7 @@ volume_db = -5.0
 [connection signal="pressed" from="BrowserRow/BrowserOption" to="." method="_on_browser_option_pressed"]
 [connection signal="item_selected" from="ResolutionRow/ResolutionOption" to="." method="_on_resolution_option_item_selected"]
 [connection signal="pressed" from="ResolutionRow/ResolutionOption" to="." method="_on_browser_option_pressed"]
+[connection signal="mouse_entered" from="SettingsMargins/SettingsButtonContainer/BackButton" to="." method="_on_button_mouse_entered" binds= ["Back"]]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="SettingsMargins/SettingsButtonContainer/SaveButton" to="." method="_on_button_mouse_entered" binds= ["Save"]]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/SaveButton" to="." method="_on_settings_save_button_pressed"]

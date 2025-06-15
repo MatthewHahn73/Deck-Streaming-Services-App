@@ -65,20 +65,22 @@ bg_color = Color(0.054902, 0.0862745, 0.0941176, 1)
 bg_color = Color(0.0980392, 0.498039, 0.647059, 1)
 
 [resource]
-Button/font_sizes/font_size = 16
+Button/font_sizes/font_size = 22
 Button/fonts/font = ExtResource("1_pghrr")
 Button/styles/disabled = SubResource("StyleBoxFlat_ws4qt")
 Button/styles/focus = SubResource("StyleBoxEmpty_p8565")
 Button/styles/hover = SubResource("StyleBoxFlat_qx0sc")
 Button/styles/normal = SubResource("StyleBoxFlat_lqgjh")
 Button/styles/pressed = SubResource("StyleBoxFlat_pefv8")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 7
-Label/font_sizes/font_size = 23
+Label/font_sizes/font_size = 25
 Label/fonts/font = ExtResource("1_pghrr")
 OptionButton/fonts/font = ExtResource("1_pghrr")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_pghrr")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_p8565")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_6pc7i")
+PopupMenu/font_sizes/font_size = 23
 PopupMenu/fonts/font = ExtResource("1_pghrr")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_gm47r")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_4rj8o")

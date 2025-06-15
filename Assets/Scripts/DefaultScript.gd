@@ -79,7 +79,7 @@ func ToggleSettingsMenu(Toggle: bool) -> void:
 func UpdateClock() -> void:
 	var time = Time.get_time_dict_from_system()
 	var meridiem = ("AM" if time.hour < 12 else "PM")
-	var hour = time.hour % 12 if time.hour != 0 else 12
+	var hour = time.hour % 12 if time.hour != 12 else 12
 	ClockLabel.text = "%2d:%02d %s" % [hour, time.minute, meridiem]
 
 func UpdateErrorLabel(ErrorTypeString: String, ErrorTypeMessage: String):
