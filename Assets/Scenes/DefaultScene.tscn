@@ -17,9 +17,8 @@
 [ext_resource type="FontFile" uid="uid://cot8h8sgty5bp" path="res://Assets/Fonts/MotivaSansBlack.woff.ttf" id="15_lv5e7"]
 [ext_resource type="AudioStream" uid="uid://bv63xjbpfg0xp" path="res://Assets/Sounds/BlipSound.wav" id="16_8f2q7"]
 
-[sub_resource type="Animation" id="Animation_8f2q7"]
-resource_name = "Preview Fade In"
-length = 0.3
+[sub_resource type="Animation" id="Animation_phmlg"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,10 +26,63 @@ tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewI
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DefaultBox/PreviewBackground/SettingsControl/SettingsMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DefaultBox/PreviewBackground/SettingsControl/SettingsMenu:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_utix2"]
+resource_name = "Settings Load"
+length = 0.5
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/SettingsControl/SettingsMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DefaultBox/PreviewBackground/SettingsControl/SettingsMenu:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_fa1qr"]
@@ -49,39 +101,18 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_phmlg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImage:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fa1qr"]
 _data = {
-&"Preview Fade In": SubResource("Animation_8f2q7"),
 &"Preview Fade Out": SubResource("Animation_fa1qr"),
-&"RESET": SubResource("Animation_phmlg")
+&"RESET": SubResource("Animation_phmlg"),
+&"Settings Load": SubResource("Animation_utix2")
 }
 
 [node name="DefaultScene" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wmgoe")
@@ -103,9 +134,12 @@ layout_mode = 2
 texture = ExtResource("1_6kbbk")
 
 [node name="OptionsBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground"]
-layout_mode = 2
-offset_right = 500.0
-offset_bottom = 1084.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 alignment = 1
 
@@ -256,24 +290,40 @@ alignment = 1
 [node name="TopTexture" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("12_lv5e7")
-stretch_mode = 5
+expand_mode = 5
 
 [node name="PreviewImage" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 680)
 layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 5
 
 [node name="BottomTexture" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("12_lv5e7")
+expand_mode = 5
 flip_v = true
 
-[node name="SettingsMenu" parent="DefaultBox/PreviewBackground" instance=ExtResource("11_utu8n")]
+[node name="SettingsControl" type="Control" parent="DefaultBox/PreviewBackground"]
 layout_mode = 1
-offset_left = 1290.0
-offset_right = 1822.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsMenu" parent="DefaultBox/PreviewBackground/SettingsControl" instance=ExtResource("11_utu8n")]
+visible = false
+layout_mode = 1
+offset_left = -266.0
+offset_right = 266.0
+rotation = 6.28319
+scale = Vector2(1, 1)
 
 [node name="ClockMarginContainer" type="MarginContainer" parent="DefaultBox/PreviewBackground"]
 layout_mode = 1
@@ -334,6 +384,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_fa1qr")
 }
 
+[node name="SettingAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fa1qr")
+}
+
 [node name="MenuSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_8f2q7")
 volume_db = -5.0
@@ -367,3 +422,4 @@ volume_db = -5.0
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_other_buttons_mouse_entered"]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_settings_pressed"]
 [connection signal="animation_finished" from="MenuAnimations" to="." method="_on_menu_animations_animation_finished"]
+[connection signal="animation_finished" from="SettingAnimations" to="." method="_on_menu_animations_animation_finished"]

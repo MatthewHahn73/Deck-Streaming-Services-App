@@ -1,99 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqpjobh068c6u"]
+[gd_scene load_steps=5 format=3 uid="uid://bqpjobh068c6u"]
 
 [ext_resource type="Script" uid="uid://4ih31e7yg172" path="res://Assets/Scripts/SettingsScript.gd" id="1_f2bev"]
 [ext_resource type="AudioStream" uid="uid://bv63xjbpfg0xp" path="res://Assets/Sounds/BlipSound.wav" id="3_lqgjh"]
 [ext_resource type="Theme" uid="uid://ow000d0w1g6a" path="res://Assets/Custom Themes/SettingsTheme.tres" id="3_m1o7v"]
 [ext_resource type="AudioStream" uid="uid://cuwo3d8m3or0s" path="res://Assets/Sounds/Select.wav" id="4_lqgjh"]
-
-[sub_resource type="Animation" id="Animation_m1o7v"]
-resource_name = "Load In"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2000, 440), Vector2(400, 440), Vector2(444, 440)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_lqgjh"]
-resource_name = "Load Out"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(444, 440), Vector2(400, 440), Vector2(2000, 440)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_rylbj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2000, 440)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2e57"]
-_data = {
-&"Load In": SubResource("Animation_m1o7v"),
-&"Load Out": SubResource("Animation_lqgjh"),
-&"RESET": SubResource("Animation_rylbj")
-}
 
 [node name="SettingsMenu" type="VBoxContainer"]
 anchors_preset = 8
@@ -101,12 +11,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -516.0
-offset_top = -100.0
-offset_right = 16.0
-offset_bottom = 100.0
+offset_left = -218.5
+offset_top = -64.0
+offset_right = 313.5
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(266, 58)
 alignment = 1
 script = ExtResource("1_f2bev")
 
@@ -175,11 +87,6 @@ size_flags_horizontal = 4
 theme = ExtResource("3_m1o7v")
 text = "Save"
 
-[node name="SettingsAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_k2e57")
-}
-
 [node name="MenuSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lqgjh")
 volume_db = -5.0
@@ -194,4 +101,3 @@ volume_db = -5.0
 [connection signal="pressed" from="ResolutionRow/ResolutionOption" to="." method="_on_browser_option_pressed"]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsMargins/SettingsButtonContainer/SaveButton" to="." method="_on_settings_save_button_pressed"]
-[connection signal="animation_finished" from="SettingsAnimations" to="." method="_on_settings_animations_animation_finished"]

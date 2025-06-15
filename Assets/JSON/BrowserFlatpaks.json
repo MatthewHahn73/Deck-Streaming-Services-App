@@ -7,11 +7,15 @@
 			"Name" : "Librewolf",  
 			"Flatpak" : "io.gitlab.librewolf-community"
 		},
-		"2": {
+		"3": {
+			"Name" : "Edge", 
+			"Flatpak" : "com.microsoft.Edge"
+		},
+		"4": {
 			"Name" : "Chrome", 
 			"Flatpak" : "com.google.Chrome"
 		}, 
-		"3": {
+		"5": {
 			"Name" : "Opera", 
 			"Flatpak" : "com.opera.Opera"
 		}

@@ -5,11 +5,10 @@ extends VBoxContainer
 @onready var ResolutionOption: OptionButton = $ResolutionRow/ResolutionOption
 @onready var BackButton: Button = $SettingsMargins/SettingsButtonContainer/BackButton
 @onready var SaveButton: Button = $SettingsMargins/SettingsButtonContainer/SaveButton
-@onready var SettingsAnimations: AnimationPlayer = $SettingsAnimations
 @onready var SettingsMenu: VBoxContainer = $"."
 @onready var SettingSounds: AudioStreamPlayer = $MenuSounds
 @onready var MenuClicks: AudioStreamPlayer = $MenuClicks
-@onready var DefaultScript: Control = get_parent().get_parent().get_parent()
+@onready var DefaultScript: Control = get_parent().get_parent().get_parent().get_parent()
 
 #General Variables
 var SettingsLocation = "res://Assets/JSON/Settings.json"
