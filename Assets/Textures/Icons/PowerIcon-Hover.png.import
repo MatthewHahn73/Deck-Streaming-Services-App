@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baceuqn3i7x1r"
-path="res://.godot/imported/SteamDeckIcon.png-352578c6d4c7305811eb29d060eec131.ctex"
+uid="uid://d1n3screhwtk"
+path="res://.godot/imported/PowerIcon-Hover.png-77ea2e48d50553daa9aa9c85ae15b98e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/PNGs/Icons/SteamDeckIcon.png"
-dest_files=["res://.godot/imported/SteamDeckIcon.png-352578c6d4c7305811eb29d060eec131.ctex"]
+source_file="res://Assets/Textures/Icons/PowerIcon-Hover.png"
+dest_files=["res://.godot/imported/PowerIcon-Hover.png-77ea2e48d50553daa9aa9c85ae15b98e.ctex"]
 
 [params]
 

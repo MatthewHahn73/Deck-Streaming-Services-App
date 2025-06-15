@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://titbmie0tplt"
-path="res://.godot/imported/SteamDeckIcon.svg-5c9637606039a3f5ed4d8719a71490fd.ctex"
+uid="uid://b24t74v8syjmc"
+path="res://.godot/imported/OptionsBackground.png-95aae5d851ef38861badd5cd279215ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/PNGs/Icons/SteamDeckIcon.svg"
-dest_files=["res://.godot/imported/SteamDeckIcon.svg-5c9637606039a3f5ed4d8719a71490fd.ctex"]
+source_file="res://Assets/Textures/Backgrounds/OptionsBackground.png"
+dest_files=["res://.godot/imported/OptionsBackground.png-95aae5d851ef38861badd5cd279215ec.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

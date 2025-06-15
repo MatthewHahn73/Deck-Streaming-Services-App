@@ -1,18 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqj23206f0dsw"]
+[gd_scene load_steps=23 format=3 uid="uid://dqj23206f0dsw"]
 
-[ext_resource type="Texture2D" uid="uid://b24t74v8syjmc" path="res://Assets/Textures/PNGs/Backgrounds/OptionsBackground.png" id="1_6kbbk"]
-[ext_resource type="Texture2D" uid="uid://d4f1gstadffqk" path="res://Assets/Textures/PNGs/Icons/PowerIcon.png" id="1_wbwc7"]
+[ext_resource type="Texture2D" uid="uid://b24t74v8syjmc" path="res://Assets/Textures/Backgrounds/OptionsBackground.png" id="1_6kbbk"]
+[ext_resource type="Texture2D" uid="uid://d4f1gstadffqk" path="res://Assets/Textures/Icons/PowerIcon.png" id="1_wbwc7"]
 [ext_resource type="Script" uid="uid://b8bpjmq8dahd5" path="res://Assets/Scripts/DefaultScript.gd" id="1_wmgoe"]
-[ext_resource type="FontFile" uid="uid://jei8ia4kpihy" path="res://Assets/Fonts/MotivaSansExtraBold.ttf" id="3_xvm51"]
-[ext_resource type="Texture2D" uid="uid://qb2hoeibf52k" path="res://Assets/Textures/PNGs/Icons/SettingsIcon.png" id="3_y4ecp"]
+[ext_resource type="Texture2D" uid="uid://qb2hoeibf52k" path="res://Assets/Textures/Icons/SettingsIcon.png" id="3_y4ecp"]
 [ext_resource type="Theme" uid="uid://ggaet022hl5u" path="res://Assets/Custom Themes/SideButtonTheme.tres" id="4_ww48f"]
-[ext_resource type="Texture2D" uid="uid://cjuji1mc6cdxl" path="res://Assets/Textures/PNGs/Icons/SettingsIcon-Pressed.png" id="5_frl37"]
-[ext_resource type="Texture2D" uid="uid://dr0asvy4uat0m" path="res://Assets/Textures/PNGs/Backgrounds/PreviewBackground.png" id="5_y4ecp"]
-[ext_resource type="Texture2D" uid="uid://dbiji0ouxu7p4" path="res://Assets/Textures/PNGs/Icons/SettingsIcon-Hover.png" id="6_utu8n"]
-[ext_resource type="Texture2D" uid="uid://be7f67egfyd3o" path="res://Assets/Textures/PNGs/Icons/PowerIcon-Pressed.png" id="8_utu8n"]
-[ext_resource type="Texture2D" uid="uid://d1n3screhwtk" path="res://Assets/Textures/PNGs/Icons/PowerIcon-Hover.png" id="9_lhorl"]
+[ext_resource type="Texture2D" uid="uid://cjuji1mc6cdxl" path="res://Assets/Textures/Icons/SettingsIcon-Pressed.png" id="5_frl37"]
+[ext_resource type="Texture2D" uid="uid://dr0asvy4uat0m" path="res://Assets/Textures/Backgrounds/PreviewBackground.png" id="5_y4ecp"]
+[ext_resource type="Texture2D" uid="uid://dbiji0ouxu7p4" path="res://Assets/Textures/Icons/SettingsIcon-Hover.png" id="6_utu8n"]
+[ext_resource type="Texture2D" uid="uid://be7f67egfyd3o" path="res://Assets/Textures/Icons/PowerIcon-Pressed.png" id="8_utu8n"]
+[ext_resource type="Texture2D" uid="uid://d1n3screhwtk" path="res://Assets/Textures/Icons/PowerIcon-Hover.png" id="9_lhorl"]
 [ext_resource type="PackedScene" uid="uid://bqpjobh068c6u" path="res://Assets/Scenes/SettingsScene.tscn" id="11_utu8n"]
-[ext_resource type="Texture2D" uid="uid://dt52vmmbcr7g4" path="res://Assets/Textures/PNGs/Backgrounds/Shader.png" id="12_lv5e7"]
+[ext_resource type="Texture2D" uid="uid://dt52vmmbcr7g4" path="res://Assets/Textures/Backgrounds/Shader.png" id="12_lv5e7"]
 [ext_resource type="Theme" uid="uid://ow000d0w1g6a" path="res://Assets/Custom Themes/SettingsTheme.tres" id="13_xvm51"]
 [ext_resource type="FontFile" uid="uid://cot8h8sgty5bp" path="res://Assets/Fonts/MotivaSansBlack.woff.ttf" id="15_lv5e7"]
 [ext_resource type="AudioStream" uid="uid://bv63xjbpfg0xp" path="res://Assets/Sounds/BlipSound.wav" id="16_8f2q7"]
@@ -22,7 +21,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImage:modulate")
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImageControl/PreviewImage:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -85,13 +84,50 @@ tracks/1/keys = {
 "values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fa1qr"]
+_data = {
+&"RESET": SubResource("Animation_phmlg"),
+&"Settings Load": SubResource("Animation_utix2")
+}
+
+[sub_resource type="Animation" id="Animation_lv5e7"]
+resource_name = "Preview Fade In"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImageControl/PreviewImage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8f2q7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImageControl/PreviewImage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_fa1qr"]
 resource_name = "Preview Fade Out"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImage:modulate")
+tracks/0/path = NodePath("DefaultBox/PreviewBackground/PreviewContainer/PreviewImageControl/PreviewImage:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,11 +137,11 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fa1qr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phmlg"]
 _data = {
+&"Preview Fade In": SubResource("Animation_lv5e7"),
 &"Preview Fade Out": SubResource("Animation_fa1qr"),
-&"RESET": SubResource("Animation_phmlg"),
-&"Settings Load": SubResource("Animation_utix2")
+&"RESET": SubResource("Animation_8f2q7")
 }
 
 [node name="DefaultScene" type="Control"]
@@ -145,26 +181,25 @@ alignment = 1
 
 [node name="TopMargin" type="MarginContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
 layout_mode = 2
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_bottom = 210
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_bottom = 200
 
 [node name="TitleBox" type="VBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin"]
 layout_mode = 2
 
 [node name="AppTitle" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
 layout_mode = 2
+theme = ExtResource("4_ww48f")
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("3_xvm51")
-theme_override_font_sizes/font_size = 30
 text = "Steam Deck Streaming"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AppVersion" type="Label" parent="DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox"]
 layout_mode = 2
+theme = ExtResource("4_ww48f")
 theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("3_xvm51")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 23
 text = "v0.00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -241,17 +276,17 @@ text = "Youtube"
 
 [node name="BottomMargin" type="MarginContainer" parent="DefaultBox/OptionsBackground/OptionsBox"]
 layout_mode = 2
-theme_override_constants/margin_top = 210
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_bottom = 75
 
 [node name="ConfigBox" type="HBoxContainer" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 8
 alignment = 1
 
 [node name="Power" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 texture_normal = ExtResource("1_wbwc7")
 texture_pressed = ExtResource("8_utu8n")
@@ -264,7 +299,7 @@ custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
 [node name="Settings" type="TextureButton" parent="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox"]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 texture_normal = ExtResource("3_y4ecp")
 texture_pressed = ExtResource("5_frl37")
@@ -294,12 +329,26 @@ size_flags_vertical = 3
 texture = ExtResource("12_lv5e7")
 expand_mode = 5
 
-[node name="PreviewImage" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
-modulate = Color(1, 1, 1, 0)
+[node name="PreviewImageControl" type="Control" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 custom_minimum_size = Vector2(0, 680)
 layout_mode = 2
+
+[node name="PreviewImage" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer/PreviewImageControl"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -200.0
+offset_right = 400.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
-expand_mode = 5
+expand_mode = 1
 
 [node name="BottomTexture" type="TextureRect" parent="DefaultBox/PreviewBackground/PreviewContainer"]
 custom_minimum_size = Vector2(0, 200)
@@ -320,10 +369,7 @@ grow_vertical = 2
 [node name="SettingsMenu" parent="DefaultBox/PreviewBackground/SettingsControl" instance=ExtResource("11_utu8n")]
 visible = false
 layout_mode = 1
-offset_left = -266.0
-offset_right = 266.0
 rotation = 6.28319
-scale = Vector2(1, 1)
 
 [node name="ClockMarginContainer" type="MarginContainer" parent="DefaultBox/PreviewBackground"]
 layout_mode = 1
@@ -379,14 +425,14 @@ theme_override_fonts/font = ExtResource("15_lv5e7")
 theme_override_font_sizes/font_size = 20
 text = "Test Error Message"
 
-[node name="MenuAnimations" type="AnimationPlayer" parent="."]
+[node name="SettingsAnimations" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_fa1qr")
 }
 
-[node name="SettingAnimations" type="AnimationPlayer" parent="."]
+[node name="LogoAnimations" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_fa1qr")
+&"": SubResource("AnimationLibrary_phmlg")
 }
 
 [node name="MenuSounds" type="AudioStreamPlayer" parent="."]
@@ -394,32 +440,31 @@ stream = ExtResource("16_8f2q7")
 volume_db = -5.0
 
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_service_button_mouse_entered" binds= ["PrimeVideo"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_any_mouse_exited" binds= ["PrimeVideo"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon" to="." method="_on_any_service_button_pressed" binds= ["PrimeVideo"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV" to="." method="_on_service_button_mouse_entered" binds= ["AppleTV"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV" to="." method="_on_any_mouse_exited" binds= ["AppleTV"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV" to="." method="_on_any_service_button_pressed" binds= ["AppleTV"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney" to="." method="_on_service_button_mouse_entered" binds= ["Disney"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney" to="." method="_on_any_mouse_exited" binds= ["Disney"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney" to="." method="_on_any_service_button_pressed" binds= ["Disney"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax" to="." method="_on_service_button_mouse_entered" binds= ["HBOMax"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax" to="." method="_on_any_mouse_exited" binds= ["HBOMax"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax" to="." method="_on_any_service_button_pressed" binds= ["HBOMax"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu" to="." method="_on_service_button_mouse_entered" binds= ["Hulu"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu" to="." method="_on_any_mouse_exited" binds= ["Hulu"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu" to="." method="_on_any_service_button_pressed" binds= ["Hulu"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix" to="." method="_on_service_button_mouse_entered" binds= ["Netflix"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix" to="." method="_on_any_mouse_exited" binds= ["Netflix"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix" to="." method="_on_any_service_button_pressed" binds= ["Netflix"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount" to="." method="_on_service_button_mouse_entered" binds= ["Paramount"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount" to="." method="_on_any_mouse_exited" binds= ["Paramount"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount" to="." method="_on_any_service_button_pressed" binds= ["Paramount"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_service_button_mouse_entered" binds= ["Youtube"]]
-[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_any_mouse_exited"]
+[connection signal="mouse_exited" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_any_mouse_exited" binds= ["Youtube"]]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube" to="." method="_on_any_service_button_pressed" binds= ["Youtube"]]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Power" to="." method="_on_other_buttons_mouse_entered"]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Power" to="." method="_on_power_pressed"]
 [connection signal="mouse_entered" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_other_buttons_mouse_entered"]
 [connection signal="pressed" from="DefaultBox/OptionsBackground/OptionsBox/BottomMargin/ConfigBox/Settings" to="." method="_on_settings_pressed"]
-[connection signal="animation_finished" from="MenuAnimations" to="." method="_on_menu_animations_animation_finished"]
-[connection signal="animation_finished" from="SettingAnimations" to="." method="_on_menu_animations_animation_finished"]
+[connection signal="animation_finished" from="SettingsAnimations" to="." method="_on_menu_animations_animation_finished"]

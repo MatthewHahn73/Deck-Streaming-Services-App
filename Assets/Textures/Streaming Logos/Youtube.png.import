@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbiji0ouxu7p4"
-path="res://.godot/imported/SettingsIcon-Hover.png-4e5399fd51b189b31f7248fa1dc03ecd.ctex"
+uid="uid://fnnmpk3wc77g"
+path="res://.godot/imported/Youtube.png-031f557a9a4cbca154eae01dd171e990.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/PNGs/Icons/SettingsIcon-Hover.png"
-dest_files=["res://.godot/imported/SettingsIcon-Hover.png-4e5399fd51b189b31f7248fa1dc03ecd.ctex"]
+source_file="res://Assets/Textures/Streaming Logos/Youtube.png"
+dest_files=["res://.godot/imported/Youtube.png-031f557a9a4cbca154eae01dd171e990.ctex"]
 
 [params]
 

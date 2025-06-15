@@ -22,11 +22,12 @@ bg_color = Color(0.0133572, 0.164352, 0.224633, 1)
 [resource]
 Button/colors/font_disabled_color = Color(0.341176, 0.341176, 0.341176, 1)
 Button/constants/outline_size = 7
-Button/font_sizes/font_size = 22
+Button/font_sizes/font_size = 25
 Button/fonts/font = ExtResource("2_qwehw")
 Button/styles/disabled = SubResource("StyleBoxFlat_qwehw")
 Button/styles/focus = SubResource("StyleBoxEmpty_uci8e")
 Button/styles/hover = SubResource("StyleBoxFlat_utu8n")
 Button/styles/normal = SubResource("StyleBoxEmpty_utu8n")
 Button/styles/pressed = SubResource("StyleBoxFlat_lhorl")
+Label/font_sizes/font_size = 30
 Label/fonts/font = ExtResource("2_qwehw")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1n3screhwtk"
-path="res://.godot/imported/PowerIcon-Hover.png-388f9ed48f73941237363232c5b7d4aa.ctex"
+uid="uid://db8jse5n1tf4k"
+path="res://.godot/imported/Netflix.png-58bead760bc33b001cb3b6c5e3749934.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/PNGs/Icons/PowerIcon-Hover.png"
-dest_files=["res://.godot/imported/PowerIcon-Hover.png-388f9ed48f73941237363232c5b7d4aa.ctex"]
+source_file="res://Assets/Textures/Streaming Logos/Netflix.png"
+dest_files=["res://.godot/imported/Netflix.png-58bead760bc33b001cb3b6c5e3749934.ctex"]
 
 [params]
 

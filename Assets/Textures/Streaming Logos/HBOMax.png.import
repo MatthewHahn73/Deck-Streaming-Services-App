@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt52vmmbcr7g4"
-path="res://.godot/imported/Shader.png-7648ba3c79a0eafef1e2cc94cf00911e.ctex"
+uid="uid://bfb7vwigg3h4c"
+path="res://.godot/imported/HBOMax.png-9f5d30c775059f2c40af257c88caa026.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/PNGs/Backgrounds/Shader.png"
-dest_files=["res://.godot/imported/Shader.png-7648ba3c79a0eafef1e2cc94cf00911e.ctex"]
+source_file="res://Assets/Textures/Streaming Logos/HBOMax.png"
+dest_files=["res://.godot/imported/HBOMax.png-9f5d30c775059f2c40af257c88caa026.ctex"]
 
 [params]
 

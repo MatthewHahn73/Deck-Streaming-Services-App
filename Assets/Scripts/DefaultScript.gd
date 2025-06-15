@@ -1,16 +1,17 @@
 extends Control
 
 #Node Variables
+@onready var SettingsMenu: VBoxContainer = $DefaultBox/PreviewBackground/SettingsControl/SettingsMenu
 @onready var AppVersion: Label = $DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox/AppVersion
-@onready var PreviewImage: TextureRect = $DefaultBox/PreviewBackground/PreviewContainer/PreviewImage
-@onready var ServicesBox: VBoxContainer = $DefaultBox/OptionsBackground/OptionsBox/ServicesBox
 @onready var ClockLabel: Label = $DefaultBox/PreviewBackground/ClockMarginContainer/ClockLabel
+@onready var ServicesBox: VBoxContainer = $DefaultBox/OptionsBackground/OptionsBox/ServicesBox
 @onready var ErrorContainer: MarginContainer = $DefaultBox/PreviewBackground/ErrorMarginContainer
 @onready var ErrorType: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorType
 @onready var ErrorMessage: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorMessage
 @onready var MenuSounds: AudioStreamPlayer = $MenuSounds
-@onready var MenuAnimations: AnimationPlayer = $MenuAnimations
-@onready var SettingsMenu: VBoxContainer = $DefaultBox/PreviewBackground/SettingsControl/SettingsMenu
+@onready var SettingsAnimations: AnimationPlayer = $SettingsAnimations
+@onready var LogoAnimations: AnimationPlayer = $LogoAnimations
+@onready var PreviewImage: TextureRect = $DefaultBox/PreviewBackground/PreviewContainer/PreviewImageControl/PreviewImage
 
 #General Variables
 var SettingsToggle = true
@@ -71,9 +72,9 @@ func ToggleStreamingButtonsDisabled(Toggle: bool) -> void:
 func ToggleSettingsMenu(Toggle: bool) -> void: 
 	if Toggle:
 		SettingsMenu.visible = Toggle
-		MenuAnimations.play("Settings Load")
+		SettingsAnimations.play("Settings Load")
 	else:
-		MenuAnimations.play_backwards("Settings Load")
+		SettingsAnimations.play_backwards("Settings Load")
 		
 func UpdateClock() -> void:
 	var time = Time.get_time_dict_from_system()
@@ -124,9 +125,16 @@ func _on_service_button_mouse_entered(ServiceType: String) -> void:
 	var ServiceButtonEntered = ReturnButtonFromType(ServiceType)
 	if ServiceButtonEntered != null && !ServiceButtonEntered.disabled:
 		MenuSounds.play()
+		PreviewImage.texture = load("res://Assets/Textures/Streaming Logos/" + ServiceType + ".png")
+		LogoAnimations.play("Preview Fade In")		
 		
 func _on_other_buttons_mouse_entered() -> void:
 	MenuSounds.play()
+	
+func _on_any_mouse_exited(ServiceType: String) -> void:
+	var ServiceButtonEntered = ReturnButtonFromType(ServiceType)
+	if ServiceButtonEntered != null && !ServiceButtonEntered.disabled:
+		LogoAnimations.play("Preview Fade Out")		
 		
 func _on_any_service_button_pressed(ServiceType: String) -> void:
 	if LoadBashScriptSettings() == 0:	#If script settings successfully loaded, launhc the browser

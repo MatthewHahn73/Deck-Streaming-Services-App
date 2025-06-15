@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b24t74v8syjmc"
-path="res://.godot/imported/OptionsBackground.png-1a3963418462f7d3e408b9d8a7493358.ctex"
+uid="uid://emvo3on5vgsu"
+path="res://.godot/imported/Paramount.png-4b7931c5b8e5dbef160bc6014d3b91a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/PNGs/Backgrounds/OptionsBackground.png"
-dest_files=["res://.godot/imported/OptionsBackground.png-1a3963418462f7d3e408b9d8a7493358.ctex"]
+source_file="res://Assets/Textures/Streaming Logos/Paramount.png"
+dest_files=["res://.godot/imported/Paramount.png-4b7931c5b8e5dbef160bc6014d3b91a0.ctex"]
 
 [params]
 
