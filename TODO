@@ -1,0 +1,9 @@
+Bugs
+    -The application currently doesn't save from the compiled executable
+        -Need to move the save file to the Streaming folder
+    -Firefox will crash after a couple of different services are opened
+        -Solution?
+
+Features
+    -Settings menu is still a little small. Need to increase it some more
+    -Find a solution to keep the application open so that another service can be chosen without having to relaunch the application
