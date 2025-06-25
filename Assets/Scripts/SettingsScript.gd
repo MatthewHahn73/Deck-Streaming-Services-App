@@ -8,7 +8,7 @@ extends VBoxContainer
 @onready var SettingsMenu: VBoxContainer = $"."
 @onready var SettingSounds: AudioStreamPlayer = $MenuSounds
 @onready var MenuClicks: AudioStreamPlayer = $MenuClicks
-@onready var DefaultScript: Control = get_parent().get_parent().get_parent().get_parent()
+@onready var DefaultScript: Control = get_parent().get_parent() 	#DefaultScene Node
 
 #General Variables
 var SettingsLocation = "res://Streaming/Config/Settings.json"

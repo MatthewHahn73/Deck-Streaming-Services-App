@@ -1,17 +1,18 @@
 extends Control
 
 #Node Variables
-@onready var SettingsMenu: VBoxContainer = $DefaultBox/PreviewBackground/SettingsControl/SettingsMenu
-@onready var AppVersion: Label = $DefaultBox/OptionsBackground/OptionsBox/TopMargin/TitleBox/AppVersion
-@onready var ClockLabel: Label = $DefaultBox/PreviewBackground/ClockMarginContainer/ClockLabel
-@onready var ServicesBox: VBoxContainer = $DefaultBox/OptionsBackground/OptionsBox/ServicesBox
-@onready var ErrorContainer: MarginContainer = $DefaultBox/PreviewBackground/ErrorMarginContainer
-@onready var ErrorType: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorType
-@onready var ErrorMessage: Label = $DefaultBox/PreviewBackground/ErrorMarginContainer/ErrorContainer/ErrorMessage
+@onready var SettingsMenu: VBoxContainer = $SettingsControl/SettingsMenu
+@onready var AppVersion: Label = $OptionsBackground/OptionsBox/TopMargin/TitleBox/AppVersion
+@onready var ClockLabel: Label = $ClockMarginContainer/ClockLabel
+@onready var ServicesBox: VBoxContainer = $OptionsBackground/OptionsBox/ServicesBox
+@onready var ErrorContainer: MarginContainer = $ErrorMarginContainer
+@onready var ErrorType: Label = $ErrorMarginContainer/ErrorContainer/ErrorType
+@onready var ErrorMessage: Label = $ErrorMarginContainer/ErrorContainer/ErrorMessage
 @onready var MenuSounds: AudioStreamPlayer = $MenuSounds
 @onready var SettingsAnimations: AnimationPlayer = $SettingsAnimations
 @onready var LogoAnimations: AnimationPlayer = $LogoAnimations
-@onready var PreviewImage: TextureRect = $DefaultBox/PreviewBackground/PreviewContainer/PreviewImageControl/PreviewImage
+@onready var PreviewImage: TextureRect = $PreviewImage
+@onready var BackgroundImages: ResourcePreloader = $PreloadedImages
 
 #General Variables
 var SettingsToggle = true
@@ -79,7 +80,7 @@ func ToggleSettingsMenu(Toggle: bool) -> void:
 func UpdateClock() -> void:
 	var time = Time.get_time_dict_from_system()
 	var meridiem = ("AM" if time.hour < 12 else "PM")
-	var hour = time.hour % 12 if time.hour != 12 else 12
+	var hour = time.hour % 12 if (time.hour % 12 != 0) else 12
 	ClockLabel.text = "%2d:%02d %s" % [hour, time.minute, meridiem]
 
 func UpdateErrorLabel(ErrorTypeString: String, ErrorTypeMessage: String):
@@ -93,21 +94,21 @@ func HideErrorLabel() -> void:
 func ReturnButtonFromType(Type: String) -> Button:
 	match Type:
 		"AppleTV":
-			return $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/AppleTV
+			return $OptionsBackground/OptionsBox/ServicesBox/AppleTV
 		"Disney":
-			return $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Disney
+			return $OptionsBackground/OptionsBox/ServicesBox/Disney
 		"HBOMax":
-			return $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/HBOMax
+			return $OptionsBackground/OptionsBox/ServicesBox/HBOMax
 		"Hulu":
-			return  $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Hulu
+			return $OptionsBackground/OptionsBox/ServicesBox/Hulu
 		"Netflix":
-			return  $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Netflix
+			return $OptionsBackground/OptionsBox/ServicesBox/Netflix
 		"Paramount":
-			return  $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Paramount
+			return $OptionsBackground/OptionsBox/ServicesBox/Paramount
 		"PrimeVideo":
-			return  $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Amazon
+			return $OptionsBackground/OptionsBox/ServicesBox/Amazon
 		"Youtube":
-			return $DefaultBox/OptionsBackground/OptionsBox/ServicesBox/Youtube
+			return $OptionsBackground/OptionsBox/ServicesBox/Youtube
 		_:
 			return null
 			 
@@ -125,7 +126,7 @@ func _on_service_button_mouse_entered(ServiceType: String) -> void:
 	var ServiceButtonEntered = ReturnButtonFromType(ServiceType)
 	if ServiceButtonEntered != null && !ServiceButtonEntered.disabled:
 		MenuSounds.play()
-		PreviewImage.texture = load("res://Assets/Textures/Streaming Logos/" + ServiceType + ".png")
+		PreviewImage.texture = BackgroundImages.get_resource(ServiceType) 
 		LogoAnimations.play("Preview Fade In")		
 		
 func _on_other_buttons_mouse_entered() -> void:
@@ -147,7 +148,3 @@ func _on_settings_pressed() -> void:
 	
 func _on_power_pressed() -> void:
 	get_tree().quit()
-
-func _on_menu_animations_animation_finished(AnimationName: StringName) -> void:
-	if AnimationName == "Settings Load" && SettingsToggle:
-		SettingsMenu.visible = false
