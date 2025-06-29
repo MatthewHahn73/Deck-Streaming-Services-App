@@ -2,7 +2,8 @@ extends VBoxContainer
 
 #Node Variables
 @onready var BrowserOption: OptionButton = $BrowserRow/BrowserOption
-@onready var ResolutionOption: OptionButton = $ResolutionRow/ResolutionOption
+@onready var MenuSoundsCheckbox: CheckBox = $MenuSoundsRow/CheckboxContainer/MenuSoundsButton
+@onready var AutoCloseCheckbox: CheckBox = $AutoCloseRow/CheckboxContainer/AutoCloseButton
 @onready var BackButton: Button = $SettingsMargins/SettingsButtonContainer/BackButton
 @onready var SaveButton: Button = $SettingsMargins/SettingsButtonContainer/SaveButton
 @onready var SettingsMenu: VBoxContainer = $"."
@@ -11,7 +12,7 @@ extends VBoxContainer
 @onready var DefaultScript: Control = get_parent().get_parent() 	#DefaultScene Node
 
 #General Variables
-var SettingsLocation = "res://Streaming/Config/Settings.json"
+var SettingsLocation = "user://Streaming/Config/Settings.json"
 var BrowserTableLocation = "res://Assets/JSON/BrowserFlatpaks.json"
 var BrowserTable = {}
 
@@ -33,8 +34,10 @@ func LoadSettings() -> void:
 		var SettingsJSON = JSON.new() 
 		if SettingsJSON.parse(SettingsFile.get_as_text()) == 0: 
 			var SettingsData = SettingsJSON.data 
-			ResolutionOption.selected = SettingsData["Resolution"]
 			BrowserOption.selected = SettingsData["Browser"]
+			MenuSoundsCheckbox.button_pressed = SettingsData["MenuSounds"]
+			AutoCloseCheckbox.button_pressed = SettingsData["AutoClose"]
+			SetMenuValues()
 		else:
 			DefaultScript.UpdateErrorLabel("IOError", "Unable to load settings from '" + SettingsLocation + "'")
 		SettingsFile.close()
@@ -42,13 +45,18 @@ func LoadSettings() -> void:
 		SaveSettings()
 		LoadSettings()
 		
+func SetMenuValues() -> void:
+	DefaultScript.MenuSettings["MenuSounds"] = MenuSoundsCheckbox.button_pressed
+	DefaultScript.MenuSettings["AutoClose"] = AutoCloseCheckbox.button_pressed
+		
 func SaveSettings() -> void: 
 	#Check if file exists, if it does, write to it, if not create a new one
 	var SettingsFile = FileAccess.open(SettingsLocation, FileAccess.WRITE)
 	var SettingsJSON = JSON.new() 
 	SettingsJSON = {
-		"Resolution" : ResolutionOption.selected if ResolutionOption.selected != -1 else 5,
-		"Browser" : ResolutionOption.selected if ResolutionOption.selected != -1 else 0
+		"Browser" : BrowserOption.selected if BrowserOption.selected != -1 else 0, 
+		"MenuSounds" : MenuSoundsCheckbox.button_pressed, 
+		"AutoClose" : AutoCloseCheckbox.button_pressed
 	}
 	SettingsFile.store_string(JSON.stringify(SettingsJSON))
 	SettingsFile.close()
@@ -76,6 +84,7 @@ func _ready() -> void:
 
 func _on_settings_save_button_pressed() -> void:
 	SaveSettings()
+	SetMenuValues()
 	if !SaveButton.disabled:
 		SaveButton.disabled = true
 	
@@ -83,14 +92,17 @@ func _on_back_button_pressed() -> void:
 	DefaultScript._on_settings_pressed() 
 
 func _on_resolution_option_item_selected(_index: int) -> void:
-	MenuClicks.play()
+	if DefaultScript.MenuSettings["MenuSounds"]:
+		MenuClicks.play()
 	if SaveButton.disabled:
 		SaveButton.disabled = false
 
 func _on_browser_option_pressed() -> void:
-	MenuClicks.play()
+	if DefaultScript.MenuSettings["MenuSounds"]:
+		MenuClicks.play()
 
 func _on_button_mouse_entered(ButtonType: String) -> void:
 	var ButtonEntered = ReturnButtonFromType(ButtonType)
 	if ButtonEntered != null && !ButtonEntered.disabled:
-		SettingSounds.play()
+		if DefaultScript.MenuSettings["MenuSounds"]:
+			SettingSounds.play()

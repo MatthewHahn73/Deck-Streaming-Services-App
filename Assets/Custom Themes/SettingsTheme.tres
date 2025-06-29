@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://ow000d0w1g6a"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://ow000d0w1g6a"]
 
 [ext_resource type="FontFile" uid="uid://cot8h8sgty5bp" path="res://Assets/Fonts/MotivaSansBlack.woff.ttf" id="1_pghrr"]
+[ext_resource type="Texture2D" uid="uid://djygffu4u7bww" path="res://Assets/Textures/Icons/Checkbox-Checked.png" id="2_6pc7i"]
+[ext_resource type="Texture2D" uid="uid://bi2ka6xt5omk0" path="res://Assets/Textures/Icons/Checkbox-Unchecked.png" id="2_pghrr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ws4qt"]
 bg_color = Color(0.054902, 0.0862745, 0.0941176, 0.501961)
@@ -33,6 +35,15 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pghrr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pc7i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j620j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pefv8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pghrr"]
 content_margin_left = 15.0
@@ -72,6 +83,12 @@ Button/styles/focus = SubResource("StyleBoxEmpty_p8565")
 Button/styles/hover = SubResource("StyleBoxFlat_qx0sc")
 Button/styles/normal = SubResource("StyleBoxFlat_lqgjh")
 Button/styles/pressed = SubResource("StyleBoxFlat_pefv8")
+CheckBox/icons/checked = ExtResource("2_6pc7i")
+CheckBox/icons/unchecked = ExtResource("2_pghrr")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_pghrr")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_6pc7i")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_j620j")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_pefv8")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 7
 Label/font_sizes/font_size = 25
