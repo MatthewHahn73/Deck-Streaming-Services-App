@@ -1,9 +1,4 @@
 Bugs
-    -The application currently doesn't save from the compiled executable
-        -Need to find a way to have the settings file be outside the scope of the assets folder
     -Firefox will crash after a couple of different services are opened
         -Find a way to close the browser if its open when the application closes
         -Find a way to check for an existing open browser when launching
-
-Features
-    -Find a solution to keep the application open so that another service can be chosen without having to relaunch the application
